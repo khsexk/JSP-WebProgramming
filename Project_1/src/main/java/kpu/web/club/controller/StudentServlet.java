@@ -1,6 +1,8 @@
 package kpu.web.club.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +18,14 @@ import kpu.web.club.persistence.StudentDAO;
 @WebServlet("/StudentServlet")
 public class StudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher view = request.getRequestDispatcher("register.html");
+		view.forward(request, response);
 	}
 
 	/**
@@ -48,7 +51,19 @@ public class StudentServlet extends HttpServlet {
 			studentVO.setEmail(request.getParameter("email"));
 			
 			StudentDAO studentDAO = new StudentDAO();
+			studentDAO.join(studentVO);
+			
+			request.setAttribute("id", studentVO.getId());
+			request.setAttribute("username", studentVO.getUsername());
+			request.setAttribute("snum", studentVO.getSnum());
+			request.setAttribute("depart", studentVO.getDepart());
+			request.setAttribute("mobile", studentVO.getMobile());
+			request.setAttribute("email", studentVO.getEmail());
+			
+			RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+			view.forward(request, response);
 		}
-	}
+
+	}	// doPost
 
 }
