@@ -6,6 +6,12 @@
 	<meta charset="UTF-8">
 	<title>Web Service Programming Homework</title>
 	<link rel="stylesheet" href="resources/register.css" type="text/css"></link>
+	
+	<style>
+	    p{
+	        text-align: center;
+	    }
+	</style>
 </head>
 
 <body>
@@ -39,7 +45,8 @@
 	</table>
 	</div>
 	
-	<a href="http://localhost:8080/hyunseok_reg/welcome.html" target="_self">메인 페이지 이동</a>
-	
+	<p>
+		<a href="http://localhost:8080/hyunseok_reg/welcome.html" target="_self">메인 페이지 이동</a>
+	</p>
 </body>
 </html>
