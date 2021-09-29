@@ -1,6 +1,36 @@
 @charset "UTF-8";
 
-header {
+/* 추가 시작 */
+@font-face {
+      src : url("../fonts/BMJUA_ttf.ttf"); 
+      font-family: "jua";
+}
+#header1 {
+	margin: 20px 10px 40px 10px;
+	font-family: "jua";
+	font-size: 60px;
+	text-shadow: 3px 3px 8px gray;
+	text-align: center;
+}
+#table {
+	margin: 20px 50px 20px 50px;
+	width: 40%;
+	float: left;
+}
+#image {
+	margin: 20px 50px 20px 50px;
+	width: 40%;
+	float: right;
+}
+#before {
+	background-color: #FDF2EE;
+	text-align: center;
+	clear: both;
+}
+
+/* 추가 끝 */
+
+#header2 {
 	margin: 20px 10px 40px 10px;
 	font-family: "Freestyle Script", "Mistral";
 	font-size: 60px;
@@ -57,3 +87,5 @@ td {
 	padding: 5px;
 	width: 70%
 }
+
+

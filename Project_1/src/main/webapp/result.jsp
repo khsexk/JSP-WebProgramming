@@ -8,14 +8,16 @@
 	<link rel="stylesheet" href="resources/register.css" type="text/css"></link>
 	
 	<style>
-	    p{
-	        text-align: center;
-	    }
+	    #before {
+			background-color: #FDF2EE;
+			text-align: center;
+			clear: both;
+		}
 	</style>
 </head>
 
 <body>
-	<header> 2021 KPU Web Service Programming Community</header>
+	<header id="header2"> 2021 KPU Web Service Programming Community</header>
 	<audio src="resources/JohnCena.mp3" autoplay></audio>
 	
 	<p id=sect>
@@ -45,7 +47,7 @@
 	</table>
 	</div>
 	
-	<p>
+	<p id="before">
 		<a href="http://localhost:8080/hyunseok_reg/welcome.html" target="_self">메인 페이지 이동</a>
 	</p>
 </body>
