@@ -1,6 +1,7 @@
 package kpu.web.club.controller;
 
 import java.io.IOException;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,15 +25,27 @@ public class StudentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher view = request.getRequestDispatcher("register.html");
-		view.forward(request, response);
-	}
+		String cmdReq="";
+		cmdReq = request.getParameter("cmd");
+		
+		if(cmdReq.equals("join")) 
+			response.sendRedirect("register.html");
+		else if(cmdReq.equals("list")) {
+			StudentDAO dao = new StudentDAO();
+			ArrayList<StudentVO> studentList = dao.getStudentList();
+			request.setAttribute("studentList", studentList);
+			
+			RequestDispatcher view = request.getRequestDispatcher("student_list.jsp");
+			view.forward(request, response);
+		}
+	}	// doGet
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -50,15 +63,14 @@ public class StudentServlet extends HttpServlet {
 			studentVO.setMobile(request.getParameter("mobile"));
 			studentVO.setEmail(request.getParameter("email"));
 			
-			StudentDAO studentDAO = new StudentDAO();
-			studentDAO.join(studentVO);
+			StudentDAO studentDao = new StudentDAO();
+			String message = "";
 			
-			request.setAttribute("id", studentVO.getId());
-			request.setAttribute("username", studentVO.getUsername());
-			request.setAttribute("snum", studentVO.getSnum());
-			request.setAttribute("depart", studentVO.getDepart());
-			request.setAttribute("mobile", studentVO.getMobile());
-			request.setAttribute("email", studentVO.getEmail());
+			if(studentDao.add(studentVO)) message = "가입 축하합니다";
+			else message = "가입 실패입니다";
+			
+			request.setAttribute("greetings", message);
+			request.setAttribute("student", studentVO);
 			
 			RequestDispatcher view = request.getRequestDispatcher("result.jsp");
 			view.forward(request, response);

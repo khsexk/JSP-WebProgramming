@@ -2,6 +2,7 @@ package kpu.web.club.persistence;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 import java.sql.*;
 
 import kpu.web.club.domain.StudentVO;
@@ -62,6 +63,7 @@ public class StudentDAO {
 			pstmt.setString(5,  vo.getDepart());
 			pstmt.setString(6,  vo.getMobile());
 			pstmt.setString(7,  vo.getEmail());
+			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -71,7 +73,34 @@ public class StudentDAO {
 		return true;
 	}
 	
-	public ArrayList<StrudentVO> getStudentList() {
+	public ArrayList<StudentVO> getStudentList() {
+		connect();
 		
+		ArrayList<StudentVO> studentlist = new ArrayList<StudentVO>();
+		String sql = "select * from student";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				StudentVO vo = new StudentVO();
+				vo.setId(rs.getString("id"));
+				vo.setPasswd(rs.getString("passwd"));
+				vo.setUsername(rs.getString("username"));
+				vo.setSnum(rs.getString("snum"));
+				vo.setDepart(rs.getString("depart"));
+				vo.setMobile(rs.getString("mobile"));
+				vo.setEmail(rs.getString("email"));
+				
+				studentlist.add(vo);
+			}
+			rs.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return studentlist;
 	}
 }
