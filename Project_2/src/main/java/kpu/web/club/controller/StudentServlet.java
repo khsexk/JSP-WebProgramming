@@ -38,6 +38,14 @@ public class StudentServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("student_list.jsp");
 			view.forward(request, response);
 		}
+		else if(cmdReq.equals("update")) {
+			StudentDAO dao = new StudentDAO();
+			StudentVO student = dao.read(request.getParameter("id"));
+			
+			request.setAttribute("student", student);
+			RequestDispatcher view = request.getRequestDispatcher("update.jsp");
+			view.forward(request, response);
+		}
 	}	// doGet
 
 	/**
@@ -51,6 +59,7 @@ public class StudentServlet extends HttpServlet {
 		
 		String cmdReq="";
 		cmdReq = request.getParameter("cmd");
+		String message = "";
 		
 		if(cmdReq.equals("join")) {
 			StudentVO studentVO = new StudentVO();
@@ -64,10 +73,31 @@ public class StudentServlet extends HttpServlet {
 			studentVO.setEmail(request.getParameter("email"));
 			
 			StudentDAO studentDao = new StudentDAO();
-			String message = "";
+			
 			
 			if(studentDao.add(studentVO)) message = "가입 축하합니다";
 			else message = "가입 실패입니다";
+			
+			request.setAttribute("greetings", message);
+			request.setAttribute("student", studentVO);
+			
+			RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+			view.forward(request, response);
+		} else if(cmdReq.equals("update")) {
+			StudentVO studentVO = new StudentVO();
+			
+			studentVO.setId(request.getParameter("id"));
+			studentVO.setPasswd(request.getParameter("passwd"));
+			studentVO.setUsername(request.getParameter("username"));
+			studentVO.setSnum(request.getParameter("snum"));
+			studentVO.setDepart(request.getParameter("depart"));
+			studentVO.setMobile(request.getParameter("mobile"));
+			studentVO.setEmail(request.getParameter("email"));
+			
+			StudentDAO dao = new StudentDAO();
+			
+			if(dao.update(studentVO)) message = "수정이 완료되었습니다.";
+			else message = "수정 실패입니다";
 			
 			request.setAttribute("greetings", message);
 			request.setAttribute("student", studentVO);

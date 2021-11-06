@@ -20,7 +20,7 @@
 			for(StudentVO vo : studentList){
 		%>
 			<tr> 
-				<td><%=vo.getId() %></td> 
+				<td><a href="http://localhost:8080/hyunseok_mvcdb/StudentServlet?cmd=update&id=<%=vo.getId() %>" target="_self"> <%=vo.getId() %> </a></td> 
 				<td><%=vo.getUsername() %></td> 
 				<td><%=vo.getSnum() %></td> 
 				<td><%=vo.getDepart() %></td> 
