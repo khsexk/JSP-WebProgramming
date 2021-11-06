@@ -52,7 +52,7 @@ public class StudentDAO {
 	public StudentVO read(String id) {
 		connect();
 		StudentVO vo = new StudentVO();
-		StringBuilder sb = new StringBuilder("select * from student where username = '").append(id).append("\'");
+		StringBuilder sb = new StringBuilder("select * from student where id = '").append(id).append("\'");
 		String sql = sb.toString();
 		
 		try {
@@ -103,19 +103,20 @@ public class StudentDAO {
 	
 	public boolean update(StudentVO vo) {
 		connect();
-		StringBuilder sb = new StringBuilder("update student set id = '").append(vo.getId()).append("\'"); 
+	
+		StringBuilder sb = new StringBuilder("update student set passwd = ?, username = ?, snum = ?, depart = ?, mobile = ?, email = ? ")
+				.append("where id = '").append(vo.getId()).append("\'");
 		String sql = sb.toString();
-		
+		// update student set passwd = '1111' where id='hyunseok';
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1,  vo.getId());
-			pstmt.setString(2,  vo.getPasswd());
-			pstmt.setString(3,  vo.getUsername());
-			pstmt.setString(4,  vo.getSnum());
-			pstmt.setString(5,  vo.getDepart());
-			pstmt.setString(6,  vo.getMobile());
-			pstmt.setString(7,  vo.getEmail());
+			pstmt.setString(1,  vo.getPasswd());
+			pstmt.setString(2,  vo.getUsername());
+			pstmt.setString(3,  vo.getSnum());
+			pstmt.setString(4,  vo.getDepart());
+			pstmt.setString(5,  vo.getMobile());
+			pstmt.setString(6,  vo.getEmail());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

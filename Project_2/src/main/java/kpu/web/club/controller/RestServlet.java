@@ -38,7 +38,7 @@ public class RestServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json; charset=UTF-8");
 		
-		String cmd = request.getParameter("key");
+		String cmd = request.getParameter("cmd");
 		PrintWriter out = response.getWriter();
 		
 		if(cmd.equals("list")) {
@@ -60,6 +60,28 @@ public class RestServlet extends HttpServlet {
 					
 					arrayJson.put(json);
 				}
+			} catch(JSONException e) {
+				e.printStackTrace();
+			}
+			out.println(arrayJson);
+		}
+		else if(cmd.equals("read")) {
+			String id = request.getParameter("id");
+			StudentDAO studentDAO = new StudentDAO();
+			StudentVO vo = studentDAO.read(id);
+			JSONArray arrayJson = new JSONArray();
+			
+			try {
+					JSONObject json = new JSONObject();
+					json.put("id", vo.getId());
+					json.put("passwd", vo.getPasswd());
+					json.put("username", vo.getUsername());
+					json.put("snum", vo.getSnum());
+					json.put("depart", vo.getDepart());
+					json.put("mobile", vo.getMobile());
+					json.put("email", vo.getEmail());
+					arrayJson.put(json);
+
 			} catch(JSONException e) {
 				e.printStackTrace();
 			}
