@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
+	@font-face {
+      src : url("../font/BMJUA_ttf.ttf"); 
+      font-family: "jua";
+	}
+
 	header {
 		margin: 20px 10px 40px 10px;
-		font-family: "Freestyle Script", "Mistral";
+		font-family: "jua", "Mistral";
 		font-size: 60px;
 		text-shadow: 3px 3px 8px gray;
 		text-align: center;
@@ -20,17 +25,34 @@
 		text-align: center;
 	}
 	
+	
 	#sect {
-		background-color: #FDF2EE;
+		background-color: #B8F8FB;
 		text-align: center;
 		margin: 20px;
 		padding: 20px;
 	}
 	
+	#before {
+		background-color: #FDF2EE;
+		text-align: center;
+		clear: both;
+	}
+	#image {
+		margin: 20px 50px 20px 50px;
+		width: 40%;
+		float: right;
+	}
+	#table {
+		margin: 20px 50px 20px 50px;
+		width: 40%;
+		float: left;
+	}
+	
 	ul {
 		list-style: none;
 		text-align: left;
-		background-color: #FDF2EE;
+		background-color: #8977AD;
 		margin-left: 20px;
 		margin-right: 20px;
 		padding-top: 20px;
