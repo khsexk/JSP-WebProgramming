@@ -1,8 +1,8 @@
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-canvas.width = window.innerwidth - 100;
-canvas.height = window.innerHeight - 100;
+canvas.width = window.innerwidth;
+//canvas.height = window.innerHeight + 100;
 
 ctx.fillStyle = 'green';
 ctx.fillRect(10, 10, 100, 100);
@@ -14,17 +14,19 @@ var dino = {
     width : 50,
     height : 50,
     draw(){
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillRect(this.x, this.y, this.width, this.height);
 		//ctx.drawImage(charImg, this.x, this.y)
     }
 }
 
+dino.draw();
+/*
 var charImg = new Image();
 var cactusImg = new Image();
 charImg.src = 'cactus.png';
 cactusImg.src = 'cactus.png';
-
+*/
 
 // 장애물
 class Cactus {
@@ -35,7 +37,7 @@ class Cactus {
         this.width = 50;
     }
     draw(){
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = "rgb(200, 0, 0)";
         ctx.fillRect(this.x, this.y, this.width, this.height);
 		//ctx.drawImage(cactusImg, this.x, this.y)
     }
