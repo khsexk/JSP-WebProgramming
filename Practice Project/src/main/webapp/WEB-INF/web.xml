@@ -13,4 +13,26 @@
   	<res-ref-name>jdbc/mysql</res-ref-name>
   	<res-auth>Container</res-auth>
   </resource-ref>
+  <servlet>
+  	<description>속성 관리 예제</description>
+  	<display-name>PropertyServlet</display-name>
+  	<servlet-name>PropertyServlet</servlet-name>
+  	<servlet-class>jspbook.ch12.PropertyServlet</servlet-class>
+  		<init-param>
+  			<param-name>name1</param-name>
+  			<param-value>user1</param-value>
+  		</init-param>
+  		<init-param>
+  			<param-name>name2</param-name>
+  			<param-value>user2</param-value>
+  		</init-param>
+  </servlet>
+  <context-param>
+  	<param-name>workspace</param-name>
+  	<param-value>c:\dev\workspace</param-value>
+  </context-param>
+  <context-param>
+    <param-name>name3</param-name>
+  	<param-value>김길동</param-value>
+  </context-param>
 </web-app>
