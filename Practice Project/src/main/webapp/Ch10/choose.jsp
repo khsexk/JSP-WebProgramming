@@ -11,7 +11,7 @@
 	<div align="center">
 		<H3>&lt;c:choose&gt;</H3>
 		<form>
-			<select name="set">
+			<select name="sel">
 				<option>-</option>
 				<option>a</option>
 				<option>b</option>

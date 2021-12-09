@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:redirect url="/ch10/choose.jsp">
+	<c:redirect url="/Ch10/choose.jsp">
 		<c:param name="sel">a</c:param>
 	</c:redirect>
 </body>
